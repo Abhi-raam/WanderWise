@@ -1,0 +1,73 @@
+/* #app {
+    height: 100%;
+  }
+  html,
+  body {
+    position: relative;
+    height: 100%;
+  }
+  
+  body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+  } */
+  
+  /* .swiper {
+    width: 100%;
+    height: 100%;
+  } */
+  
+  /* .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+  
+  /* .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .swiper {
+    margin-left: auto;
+    margin-right: auto;
+  } */
+  
+  /* .swiper-button-next {
+    color: red;
+    font-size: 2rem;
+  } */
+  .swiper-button-prev:after{
+    font-size: 15px;
+    font-weight: bolder;
+    color: azure;
+    background-color: #374151;
+    opacity: 60%;
+    padding: 7px;
+    border-radius: 20%;
+    /* background-color: aqua; */
+    /* border-radius: 100%; */
+    /* padding: 5px; */
+  }
+  .swiper-button-next:after{
+    font-size: 15px;
+    font-weight: bolder;
+    color: azure;
+    background-color: #374151;
+    opacity: 60%;
+    padding: 7px;
+    border-radius: 20%;
+    /* background-color: aqua; */
+    /* border-radius: 100%; */
+    /* padding: 5px; */
+  }
