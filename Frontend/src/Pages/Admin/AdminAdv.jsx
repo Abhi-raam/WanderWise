@@ -5,7 +5,6 @@ import { FiMonitor, FiEdit } from "react-icons/fi";
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { IoClose } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import adv from '../../assets/adv.jpg'
 import axios from '../../Axios'
 
 function AdminAdv() {
@@ -50,8 +49,8 @@ function AdminAdv() {
                 <div className=' m-5 p-2 rounded-md bg-slate-100 shadow-md'>
                     <table className="table">
                         {/* head */}
-                        <thead>
-                            <tr className='text-center'>
+                        <thead className='border border-slate-600'>
+                            <tr className='text-center border border-slate-600'>
                                 <th>S NO</th>
                                 <th>Image</th>
                                 <th>Link</th>
@@ -63,8 +62,8 @@ function AdminAdv() {
                             {/* row 1 */}
                             {advData?.map((adv, index) => (
                                 <tr className='text-center'>
-                                    <th>{index+1}</th>
-                                    <td>
+                                    <th className='border border-slate-600'>{index+1}</th>
+                                    <td className='border border-slate-600'>
                                         <div className="flex justify-center items-center gap-3">
                                             <div className="">
                                                 <div className="w-[20rem]">
@@ -73,16 +72,16 @@ function AdminAdv() {
                                             </div>
                                         </div>
                                     </td>
-                                    <td><a href={adv.url}>{adv.url}</a></td>
-                                    <td>{new Date(adv?.time).toDateString()}</td>
-                                    <th>
+                                    <td className='border border-slate-600'><a href={adv.url}>{adv.url}</a></td>
+                                    <td className='border border-slate-600'>{new Date(adv?.time).toDateString()}</td>
+                                    <th className='border border-slate-600'>
                                         <td>
                                             <div className="dropdown dropdown-end" onClick={() => toggleDropdown(adv._id)}>
                                                 <div tabIndex={0} role="button" className="btn btn-xs m-1" ><HiOutlineDotsHorizontal className='text-xl' /></div>
                                                 {showDropdownId === adv._id && (
                                                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40">
                                                         <li><button onClick={() => toggleAdvDetails(adv._id)}><FiMonitor />Show</button></li>
-                                                        <li><Link ><FiEdit />Edit </Link></li>
+                                                        {/* <li><Link ><FiEdit />Edit </Link></li> */}
                                                         <li className='text-red-600' onClick={()=>deleteAdv(adv._id)}><a><RiDeleteBin6Line />Delete </a></li>
                                                     </ul>
                                                 )}

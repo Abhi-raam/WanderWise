@@ -78,9 +78,49 @@ router.delete('/delete-adadvertisement/:id',(req,res)=>{
 })
 
 router.post('/upload-banner',upload.single("image"),(req,res)=>{
+  // console.log(req.body);
   const bannerName = req.file.filename
   AdminFunctions.uploadBannerImg(bannerName,req.body.time).then((response)=>{
     res.status(200).json()
+  })
+})
+
+router.get('/get-banner',(req,res)=>{
+  AdminFunctions.viewBannerImg().then((response)=>{
+    res.status(200).json(response)
+  })
+})
+router.delete('/delete-banner/:id',(req,res)=>{
+  const bannerId = req.params.id
+  AdminFunctions.deleteBanner(bannerId).then((msg)=>{
+    res.status(200).json(msg)
+  })
+})
+
+router.post('/create-destination',upload.single("image"),(req,res)=>{
+  const destinationImg = req.file.filename
+  AdminFunctions.createDestination(req.body,destinationImg).then((response)=>{
+    res.status(200).json(response)
+  })
+})
+
+router.get('/get-destination',(req,res)=>{
+  AdminFunctions.viewDestination().then((response)=>{
+    res.status(200).json(response)
+  })
+})
+
+router.delete('/delete-destination/:id',(req,res)=>{
+  const destinationId = req.params.id
+  AdminFunctions.deleteDestination(destinationId).then((msg)=>{
+    res.status(200).json(msg)
+  })
+})
+
+router.get('/get',(req,res)=>{
+  const searchQuery = req.query.searchTerm;
+  AdminFunctions.getSearchData(searchQuery).then((response)=>{
+    res.status(200).json(response)
   })
 })
 

@@ -18,7 +18,7 @@ function Sidenav() {
     { name: "Dashboard", link: "/admin", icon: MdHome },
     { name: "News", link: "/admin/news", icon: BsNewspaper },
     { name: "Traditional News", link: "/admin/traditional-news", icon: IoIosPaperPlane },
-    { name: "Destination", link: "/admin/users", icon: LiaFortAwesomeAlt },
+    { name: "Destination", link: "/admin/destinations", icon: LiaFortAwesomeAlt },
     { name: "Advertisement", link: "/admin/advertisements", icon: RiAdvertisementLine },
     { name: "Home Banner", link: "/admin/home-banner", icon: BiSolidImageAdd },
     // { name: "Services", link: "/admin/services", icon: MdMiscellaneousServices },

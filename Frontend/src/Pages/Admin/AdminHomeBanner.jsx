@@ -5,13 +5,12 @@ import { FiMonitor, FiEdit } from "react-icons/fi";
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { IoClose } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import adv from '../../assets/adv.jpg'
 import axios from '../../Axios'
 
 function AdminHomeBanner() {
     const [showDropdownId, setShowDropdownId] = useState(null);
     const [showBannerDetails, setShowBannerDetails] = useState(null);
-    // const [bannerData, setBannerData] = useState()
+    const [bannerData, setBannerData] = useState()
     const toggleDropdown = (id) => {
         setShowDropdownId(showDropdownId === id ? null : id);
     };
@@ -20,29 +19,20 @@ function AdminHomeBanner() {
         setShowBannerDetails(showBannerDetails === id ? null : id);
     };
 
-    // useEffect(() => {
-    //     axios.get('/api/admin/get-advertisement').then((response) => {
-    //         setBannerData(response.data)
-    //     })
-    // }, [])
-    const bannerData = [
-        {
-            "_id":1,
-            "url" : "samlpple.com",
-            "file_name": "any file name",
-            "time": "2024-04-10T21:10:20.780+00:00"
-        }
-    ]
+    useEffect(() => {
+        axios.get('/api/admin/get-banner').then((response) => {
+            setBannerData(response.data)
+        })
+    }, [])
 
     const deleteBanner =(bannerId)=>{
-        alert("deleted Clicked")
-        // const confirm = window.confirm(`Are you sure you want to delete ${bannerId}`)
-        // if(confirm){
-        //     axios.delete(`/api/admin/delete-adadvertisement/${bannerId}`).then((response => {
-        //         alert(response.data)
-        //         window.location.reload()
-        //     }))
-        // }
+        const confirm = window.confirm(`Are you sure you want to delete ${bannerId}`)
+        if(confirm){
+            axios.delete(`/api/admin/delete-banner/${bannerId}`).then((response => {
+                alert(response.data)
+                window.location.reload()
+            }))
+        }
     }
   return (
     <div className='pt-20'>
@@ -55,42 +45,40 @@ function AdminHomeBanner() {
                 </Link>
             </div>
             <div>
-                <div className=' m-5 p-2 rounded-md bg-slate-100 shadow-md'>
+                <div className=' m-5 p-2 rounded-md bg-slate-200 shadow-md'>
                     <table className="table">
                         {/* head */}
-                        <thead>
+                        <thead className='border border-slate-600'>
                             <tr className='text-center'>
                                 <th>S NO</th>
                                 <th>Image</th>
-                                <th>Link</th>
                                 <th>Created</th>
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody >
                             {/* row 1 */}
                             {bannerData?.map((adv, index) => (
-                                <tr className='text-center'>
-                                    <th>{index+1}</th>
-                                    <td>
+                                <tr className='text-center border border-slate-600 hover'>
+                                    <th className='border border-slate-600'>{index+1}</th>
+                                    <td className='border border-slate-600'>
                                         <div className="flex justify-center items-center gap-3">
                                             <div className="">
-                                                <div className="w-[20rem]">
+                                                <div className="w-[15rem]">
                                                     <img src={`http://localhost:3000/${adv.file_name}`} alt={adv.file_name} />
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td><a href={adv.url}>{adv.url}</a></td>
-                                    <td>{new Date(adv?.time).toDateString()}</td>
-                                    <th>
+                                    <td className='border border-slate-600'>{new Date(adv?.time).toDateString()}</td>
+                                    <th className='border border-slate-600'>
                                         <td>
                                             <div className="dropdown dropdown-end" onClick={() => toggleDropdown(adv._id)}>
                                                 <div tabIndex={0} role="button" className="btn btn-xs m-1" ><HiOutlineDotsHorizontal className='text-xl' /></div>
                                                 {showDropdownId === adv._id && (
                                                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40">
                                                         <li><button onClick={() => toggleAdvDetails(adv._id)}><FiMonitor />Show</button></li>
-                                                        <li><Link ><FiEdit />Edit </Link></li>
+                                                        {/* <li><Link ><FiEdit />Edit </Link></li> */}
                                                         <li className='text-red-600' onClick={()=>deleteBanner(adv._id)}><a><RiDeleteBin6Line />Delete </a></li>
                                                     </ul>
                                                 )}
@@ -112,9 +100,9 @@ function AdminHomeBanner() {
                             <button className="text-3xl text-red-600" onClick={() => toggleAdvDetails(null)}><IoClose /></button>
                         </div>
                         <div className='space-y-5'>
-                            <div>
+                            <div className='flex flex-col items-center'>
                                 <h2 className='text-sm font-semibold text-slate-500'>Image</h2>
-                                <img src={`http://localhost:3000/${bannerData.find(adv => adv._id === showBannerDetails).file_name}`} alt="" />
+                                <img src={`http://localhost:3000/${bannerData.find(adv => adv._id === showBannerDetails).file_name}`} className='w-[25rem]' alt="" />
                             </div>
                             <div>
                                 <h2 className='text-sm font-semibold text-slate-500'>Id</h2>

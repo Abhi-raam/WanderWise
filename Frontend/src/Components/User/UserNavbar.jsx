@@ -1,9 +1,34 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../Context/UserContext'
 
 function UserNavbar() {
     const { userLogin, setUserLogin } = useContext(UserContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+    const [searchTerm, setSearchTerm] = useState()
+
+    const handleSearch = (e) => {
+        if (searchTerm) {
+            e.preventDefault()
+            console.log(searchTerm);
+            const urlParms = new URLSearchParams(location.search)
+            urlParms.set("searchTerm", searchTerm)
+            const searchQuery = urlParms.toString()
+            navigate(`/search?${searchQuery}`)
+        } else {
+            alert("write something")
+        }
+    }
+    // console.log(searchTerm);
+
+    useEffect(() => {
+        const urlParms = new URLSearchParams(location.search)
+        const searchTermFromUrl = urlParms.get("searchTerm")
+        if (searchTermFromUrl) {
+            setSearchTerm(searchTermFromUrl)
+        }
+    }, [location.search])
     return (
         <div>
             <div className="navbar bg-slate-800/40 shadow-lg font-medium text-white fixed z-30">
@@ -18,28 +43,36 @@ function UserNavbar() {
                             <li><a>Item 3</a></li>
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost text-xl">CityScout</Link>
+                    <Link to='/' className="btn btn-ghost text-xl">WanderWise</Link>
                 </div>
                 {/* largscreen */}
                 <div className="navbar-center hidden lg:flex z-20">
                     <ul className="menu menu-horizontal px-1 ">
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/">News</Link></li>
+                        <li><Link to="/news">News</Link></li>
                         <li><Link to="/">Treditional News</Link></li>
-                        <li><a>Top Destinations</a></li>
+                        <li><Link to="/top-destination">Top Destinations</Link></li>
                     </ul>
                 </div>
                 <div className="navbar-end">
                     <div className="flex gap-2">
+                        {/* <form action="" > */}
                         <div className="form-control hidden md:flex items-center justify-center">
-                            <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto h-[2.5rem]" />
+                            <form action="" onSubmit={handleSearch}>
+                                <input type="text" placeholder="Search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="input input-bordered w-24 md:w-auto h-[2.5rem] text-slate-700" />
+                            </form>
                         </div>
+                        {/* </form> */}
                     </div>
                 </div>
             </div>
-                <div className="form-control p-2 px-4  justify-center items-center w-full md:hidden fixed z-30 pt-[4.5rem]">
-                    <input type="text" placeholder="Search" className="input input-sm input-bordered w-full  bg-slate-200/90" />
-                </div>
+            {/* <form action="" onSubmit={handleSearch}> */}
+            <div className="form-control p-2 px-4  justify-center items-center w-full md:hidden fixed z-30 pt-[4.5rem]">
+                <form action="" className='w-full' onSubmit={handleSearch}>
+                    <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search" className="input input-sm input-bordered w-full  text-slate-600" />
+                </form>
+            </div>
+            {/* </form> */}
         </div>
     )
 }

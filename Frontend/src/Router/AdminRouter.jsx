@@ -11,6 +11,8 @@ import AdminAdv from '../Pages/Admin/AdminAdv'
 import CreateAdv from '../Pages/Admin/CreateAdv'
 import AdminHomeBanner from '../Pages/Admin/AdminHomeBanner'
 import CreateBanner from '../Pages/Admin/CreateBanner'
+import Destination from '../Pages/Admin/Destination'
+import CreateDestination from '../Pages/Admin/CreateDestination'
 
 
 function AdminRouter() {
@@ -28,6 +30,8 @@ function AdminRouter() {
             <Route path='/advertisements/create' element={<CreateAdv/>} />
             <Route path='/home-banner' element={<AdminHomeBanner/>} />
             <Route path='/home-banner/create' element={<CreateBanner/>} />
+            <Route path='/destinations' element={<Destination/>} />
+            <Route path='/destinations/create' element={<CreateDestination/>} />
         </Routes>
     </div>
   )

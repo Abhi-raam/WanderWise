@@ -47,8 +47,8 @@ function AdminNews() {
             <div>
                 <div className=' m-5 p-2 rounded-md bg-slate-100 shadow-md'>
                     <table className='table'>
-                        <thead className='font-semibold text-black text-center'>
-                            <tr>
+                        <thead className='font-semibold text-black text-center border border-slate-600'>
+                            <tr className='border border-slate-600'>
                                 <th>S NO</th>
                                 <th>News Heading</th>
                                 <th>Description</th>
@@ -56,14 +56,14 @@ function AdminNews() {
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='border border-slate-600'>
                             {newsData?.map((item, index) => (
                                 <tr className='hover cursor-pointer text-center font-medium' key={item._id}>
-                                    <td>{index + 1}</td>
-                                    <td>{item?.news_heading}</td>
-                                    <td className='max-w-[25rem] text-justify'>{item.news_description}</td>
-                                    <td>{new Date(item?.time).toDateString()}</td>
-                                    <td>
+                                    <td className='border border-slate-600'>{index + 1}</td>
+                                    <td className='border border-slate-600'>{item?.news_heading}</td>
+                                    <td className='max-w-[25rem] text-justify border border-slate-600'>{item.news_description}</td>
+                                    <td className='border border-slate-600'>{new Date(item?.time).toDateString()}</td>
+                                    <td className='border border-slate-600'>
                                         <div className="dropdown dropdown-end" onClick={() => toggleDropdown(item._id)}>
                                             <div tabIndex={0} role="button" className="btn btn-xs m-1" ><HiOutlineDotsHorizontal className='text-xl' /></div>
                                             {showDropdownId === item._id && (
