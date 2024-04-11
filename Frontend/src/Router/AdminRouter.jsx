@@ -13,6 +13,8 @@ import AdminHomeBanner from '../Pages/Admin/AdminHomeBanner'
 import CreateBanner from '../Pages/Admin/CreateBanner'
 import Destination from '../Pages/Admin/Destination'
 import CreateDestination from '../Pages/Admin/CreateDestination'
+import EditTraditionalNews from '../Pages/Admin/EditTraditionalNews'
+import EditDestination from '../Pages/Admin/EditDestination'
 
 
 function AdminRouter() {
@@ -26,12 +28,14 @@ function AdminRouter() {
             <Route path='/news/edit/:newsId' element={<EditNews/>} />
             <Route path='/traditional-news' element={<TraditionalNews/>} />
             <Route path='/traditional-news/create' element={<CreateTraditionalNews/>} />
+            <Route path='/traditional-news/edit/:newsId' element={<EditTraditionalNews/>} />
             <Route path='/advertisements' element={<AdminAdv/>} />
             <Route path='/advertisements/create' element={<CreateAdv/>} />
             <Route path='/home-banner' element={<AdminHomeBanner/>} />
             <Route path='/home-banner/create' element={<CreateBanner/>} />
             <Route path='/destinations' element={<Destination/>} />
             <Route path='/destinations/create' element={<CreateDestination/>} />
+            <Route path='/destinations/edit/:destId' element={<EditDestination/>} />
         </Routes>
     </div>
   )

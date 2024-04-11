@@ -51,6 +51,7 @@ function AdminNews() {
                             <tr className='border border-slate-600'>
                                 <th>S NO</th>
                                 <th>News Heading</th>
+                                <th>Image</th>
                                 <th>Description</th>
                                 <th>Created</th>
                                 <th></th>
@@ -61,6 +62,15 @@ function AdminNews() {
                                 <tr className='hover cursor-pointer text-center font-medium' key={item._id}>
                                     <td className='border border-slate-600'>{index + 1}</td>
                                     <td className='border border-slate-600'>{item?.news_heading}</td>
+                                    <td className='border border-slate-600'>
+                                        <div className="flex justify-center items-center gap-3">
+                                            <div className="">
+                                                <div className="w-[10rem]">
+                                                    <img src={`http://localhost:3000/${item.file_name}`} alt={`hello`} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td className='max-w-[25rem] text-justify border border-slate-600'>{item.news_description}</td>
                                     <td className='border border-slate-600'>{new Date(item?.time).toDateString()}</td>
                                     <td className='border border-slate-600'>
@@ -83,12 +93,16 @@ function AdminNews() {
             </div>
             {showNewsDetails && (
                 <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white w-[30rem] p-8 rounded-md space-y-5">
+                    <div className="bg-white w-[50rem] h-[35rem] p-8 rounded-md space-y-5 overflow-y-scroll">
                         <div className='flex justify-between items-center'>
                             <h2 className="text-2xl font-medium">Show</h2>
                             <button className="text-3xl text-red-600" onClick={() => toggleNewsDetails(null)}><IoClose /></button>
                         </div>
                         <div className='space-y-5'>
+                            <div className='flex flex-col items-center'>
+                                <h2 className='text-sm font-semibold text-slate-500'>Image</h2>
+                                <img src={`http://localhost:3000/${newsData.find(item => item._id === showNewsDetails).file_name}`} className='w-[25rem]' alt="" />
+                            </div>
                             <div>
                                 <h2 className='text-sm font-semibold text-slate-500'>Id</h2>
                                 <p className='font-semibold text-sm'>{newsData.find(item => item._id === showNewsDetails)._id}</p>

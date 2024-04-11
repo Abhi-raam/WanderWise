@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const newsSchema = new mongoose.Schema({
+const traditionalNewsSchema = new mongoose.Schema({
     news_heading : {
         type:String,
         require:true,
@@ -19,5 +19,5 @@ const newsSchema = new mongoose.Schema({
     }
 })
 
-const News = mongoose.model("News", newsSchema)
-module.exports = News
+const TraditionalNews = mongoose.model("TraditionalNews", traditionalNewsSchema)
+module.exports = TraditionalNews

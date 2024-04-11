@@ -110,7 +110,7 @@ function Destination() {
                                                                 Show
                                                             </button>
                                                         </li>
-                                                        <li><Link ><FiEdit />Edit </Link></li>
+                                                        <li><Link to={`/admin/destinations/edit/${destination._id}`} ><FiEdit />Edit </Link></li>
                                                         <li className="text-red-600" onClick={() => deleteDestination(destination._id)}>
                                                             <a><RiDeleteBin6Line /> Delete</a>
                                                         </li>

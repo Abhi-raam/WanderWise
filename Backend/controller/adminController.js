@@ -1,15 +1,16 @@
-const Admin = require("../model/adminModel");
 const News = require("../model/newsModel");
 const Advertisement = require("../model/advModel");
 const Banner = require("../model/bannerModel");
 const Destination = require("../model/destinationModel");
+const TraditionalNews = require('../model/traditionalNewsModel')
 const fs = require("fs");
 module.exports = {
-  createNews: (newsData) => {
+  createNews: (newsData,newsImg) => {
     const { newsHeading, description, time } = newsData;
     const newNews = {
       news_heading: newsHeading,
       news_description: description,
+      file_name:newsImg,
       time: time,
     };
     return new Promise((resolve, reject) => {
@@ -33,10 +34,11 @@ module.exports = {
     });
   },
 
-  updateNews: (newsId, newsData) => {
+  updateNews: (newsId, newsData,newsImgName) => {
     const { newsHeading, description, time } = newsData;
     const newNews = {
       news_heading: newsHeading,
+      file_name:newsImgName,
       news_description: description,
       time: time,
     };
@@ -49,8 +51,56 @@ module.exports = {
 
   deleteNews: (id) => {
     return new Promise(async (resolve, reject) => {
-      News.findByIdAndDelete({ _id: id }).then((deletedUser) => {
-        resolve(deletedUser);
+      News.findByIdAndDelete({ _id: id }).then((deletedNews) => {
+        fs.unlinkSync(`./uploads/${deletedNews.file_name}`);
+        resolve(deletedNews);
+      });
+    });
+  },
+
+  createTraditionalNews:(data,fileName)=>{
+    return new Promise((resolve,reject)=>{
+      TraditionalNews.create({news_heading:data.newsHeading,file_name:fileName,news_description:data.newsDetails,time:data.time}).then((response)=>{
+        resolve(response)
+      })
+    })
+  },
+
+  viewTraditionalNews:()=>{
+    return new Promise((resolve,reject)=>{
+      TraditionalNews.find({}).then((response)=>{
+        resolve(response)
+      })
+    })
+  },
+
+  getSingleTraditonalNews: (id) => {
+    return new Promise((resolve, reject) => {
+      let news = TraditionalNews.findById({ _id: id });
+      resolve(news);
+    });
+  },
+
+  updateraditonalNews: (newsId, newsData,newsImgName) => {
+    const { newsHeading, description, time } = newsData;
+    const newNews = {
+      news_heading: newsHeading,
+      file_name:newsImgName,
+      news_description: description,
+      time: time,
+    };
+    return new Promise(async (resolve, reject) => {
+      TraditionalNews.findByIdAndUpdate({ _id: newsId }, newNews).then((updatedNews) => {
+        resolve(updatedNews);
+      });
+    });
+  },
+  
+  deleteTraditionalNews: (id) => {
+    return new Promise(async (resolve, reject) => {
+      TraditionalNews.findByIdAndDelete({ _id: id }).then((deletedNews) => {
+        fs.unlinkSync(`./uploads/${deletedNews.file_name}`);
+        resolve(deletedNews);
       });
     });
   },
@@ -126,8 +176,27 @@ module.exports = {
       });
     });
   },
+  getSingleDestination:(id)=>{
+    return new Promise((resolve,reject)=>{
+      Destination.findById({_id:id}).then((response)=>{
+        resolve(response)
+      })
+    })
+  },
+  updataDestination:(destId,data,imageName)=>{
+    return new Promise((resolve,reject)=>{
+      Destination.findByIdAndUpdate({_id:destId},{
+        name: data.destinationName,
+        file_name: imageName,
+        details: data.description,
+        location: data.location,
+        time: data.time,
+      }).then((data)=>{
+        resolve("Destination updated")
+      })
+    })
+  },
   deleteDestination: (destinationId) => {
-    console.log(destinationId);
     return new Promise((resolve, reject) => {
       Destination.findByIdAndDelete({ _id: destinationId }).then(
         (deletedDestinstion) => {

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 function UserHome() {
   const [news, setNews] = useState();
   const [destinationData, setDestinationData] = useState();
+  const [traditionalNews, setTraditionalNews] = useState();
   useEffect(() => {
     axios.get("/api/admin/get-news").then((response) => {
       setNews(response.data);
@@ -15,6 +16,9 @@ function UserHome() {
     axios.get("/api/admin/get-destination").then((response) => {
       setDestinationData(response.data);
     });
+    axios.get('/api/admin/get-traditional-news').then((response) => {
+      setTraditionalNews(response.data)
+  })
   }, []);
   return (
     <div>
@@ -60,15 +64,14 @@ function UserHome() {
           <h3 className="font-semibold text-3xl text-center text-yellow-600">Top Traditional News</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center pb-4 pt-5">
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
+          {traditionalNews?.map((newsDetails,index)=>(
+            <NewsCard key={index} news={newsDetails} />
+          ))}
         </div>
         <div className="flex justify-end pr-6 pb-4">
+          <Link to="/traditional-news">
           <button className="btn btn-sm bg-yellow-600 text-slate-200 hover:bg-slate-200 hover:text-yellow-600">View All Traditional News</button>
+          </Link>
         </div>
       </div>
     </div>

@@ -7,13 +7,18 @@ function CreateNews() {
     const navigate = useNavigate()
     const [newsHeading, setNewsHeading] = useState('');
     const [description, setDescription] = useState('');
+    const [image, setImage] = useState()
     const [time, setTime] = useState(Date.now());
 
 
     // Function to handle button click
     const handleSave = () => {
-        axios.post('/api/admin/create-news',{newsHeading,description,time}).then((response)=>{
-            if(response.status === 200){
+        axios.post('/api/admin/create-news', { newsHeading, description, image, time },
+            {
+                "headers": { "Content-Type": "multipart/form-data" }
+            }
+        ).then((response) => {
+            if (response.status === 200) {
                 console.log("noerror");
                 navigate('/admin/news')
             }
@@ -32,29 +37,35 @@ function CreateNews() {
                         <div className="label">
                             <span className="label-text">News Heading</span>
                         </div>
-                        <input 
-                            type="text" 
-                            placeholder="Type here" 
-                            className="input input-bordered" 
-                            value={newsHeading} 
-                            onChange={(e)=>setNewsHeading(e.target.value)} 
+                        <input
+                            type="text"
+                            placeholder="Type here"
+                            className="input input-bordered"
+                            value={newsHeading}
+                            onChange={(e) => setNewsHeading(e.target.value)}
                         />
                     </label>
                     <label className="form-control">
                         <div className="label">
                             <span className="label-text">News details</span>
                         </div>
-                        <textarea 
-                            className="textarea textarea-bordered h-[10rem] lg:h-[20rem]" 
-                            placeholder="Details" 
-                            value={description} 
-                            onChange={(e)=>setDescription(e.target.value)} 
+                        <textarea
+                            className="textarea textarea-bordered h-[10rem] lg:h-[10rem]"
+                            placeholder="Details"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </label>
+                    <label className="form-control">
+                        <div className="label">
+                            <span className="label-text">News Image</span>
+                        </div>
+                        <input onChange={(e) => setImage(e.target.files[0])} type="file" className="file-input file-input-bordered w-full " />
+                    </label>
                     <div className='flex justify-center pt-10'>
-                        <button 
-                            type="button" 
-                            className='btn btn-sm px-6 btn-primary' 
+                        <button
+                            type="button"
+                            className='btn btn-sm px-6 btn-primary'
                             onClick={handleSave}
                         >
                             Save
