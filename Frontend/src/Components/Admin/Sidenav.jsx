@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BsNewspaper } from "react-icons/bs";
-import { MdHome, MdMiscellaneousServices, MdPerson,MdDescription  } from "react-icons/md";
+import { MdHome,} from "react-icons/md";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { ImBlog } from "react-icons/im";
+import { BiSolidImageAdd } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
+import { IoIosPaperPlane } from "react-icons/io";
+import { LiaFortAwesomeAlt } from "react-icons/lia";
+import { RiAdvertisementLine } from "react-icons/ri";
+
+
 import { Link } from "react-router-dom";
+
 
 function Sidenav() {
   const menus = [
     { name: "Dashboard", link: "/admin", icon: MdHome },
     { name: "News", link: "/admin/news", icon: BsNewspaper },
-    { name: "Traditional News", link: "/admin/traditional-news", icon: BsNewspaper },
-    { name: "Destination", link: "/admin/users", icon: MdPerson },
-    { name: "Category", link: "/admin/category", icon: ImBlog },
+    { name: "Traditional News", link: "/admin/traditional-news", icon: IoIosPaperPlane },
+    { name: "Destination", link: "/admin/users", icon: LiaFortAwesomeAlt },
+    { name: "Advertisement", link: "/admin/advertisements", icon: RiAdvertisementLine },
+    { name: "Home Banner", link: "/admin/home-banner", icon: BiSolidImageAdd },
     // { name: "Services", link: "/admin/services", icon: MdMiscellaneousServices },
   ];
   const [open, setOpen] = useState(false);
@@ -50,7 +57,7 @@ function Sidenav() {
           </div>
         </div>
         <div className="text-center flex-grow p-2 ">
-          <p className="btn btn-ghost text-xl">CityScout Admin</p>
+          <p className="btn btn-ghost text-xl">WanderWise Admin</p>
         </div>
       </div>
 
