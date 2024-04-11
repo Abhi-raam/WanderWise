@@ -14,7 +14,7 @@ function News() {
     return (
         <div className='min-h-screen'>
             <div className="pt-28 lg:pt-[4.5rem]">
-                <h3 className="font-semibold text-3xl text-center text-yellow-600">Top news</h3>
+                <h3 className="font-semibold text-3xl text-center text-yellow-600">Top News</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 justify-items-center pb-4 pt-5">
                 {news?.map((newsDetails, index) => (

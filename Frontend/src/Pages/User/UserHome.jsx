@@ -5,6 +5,7 @@ import NewsCard from "../../Components/User/NewsCard";
 import DestinationCard from "../../Components/User/DestinationCard";
 import axios from "../../Axios";
 import { Link } from "react-router-dom";
+import TraditionalNewsCard from "../../Components/User/TraditionalNewsCard";
 function UserHome() {
   const [news, setNews] = useState();
   const [destinationData, setDestinationData] = useState();
@@ -65,7 +66,7 @@ function UserHome() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center pb-4 pt-5">
           {traditionalNews?.map((newsDetails,index)=>(
-            <NewsCard key={index} news={newsDetails} />
+            <TraditionalNewsCard key={index} news={newsDetails} />
           ))}
         </div>
         <div className="flex justify-end pr-6 pb-4">

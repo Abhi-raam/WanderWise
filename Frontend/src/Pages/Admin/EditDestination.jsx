@@ -14,7 +14,6 @@ function EditDestination() {
 
     useEffect(() => {
         axios.get(`/api/admin/get-destination/${destId}`).then((response)=>{
-            console.log(response.data);
             setDestinationName(response.data.name)
             setDescription(response.data.details)
             setLocation(response.data.location)

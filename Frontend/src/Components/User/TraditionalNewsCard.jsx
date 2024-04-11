@@ -1,10 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+function TraditionalNewsCard({news}) {
 
-function DestinationCard({ destination }) {
     const truncateText = (text, numWords) => {
         if (!text) {
-            return '';
+            return ''; // Return an empty string if text is undefined or null
         }
         const words = text.split(' ');
 
@@ -16,13 +16,13 @@ function DestinationCard({ destination }) {
     };
     return (
         <div>
-            <div className="card card-compact w-[20rem] bg-base-100 shadow-xl rounded-sm hover:-translate-y-2 transition hover:shadow-md border border-yellow-600 text-slate-300">
-                <figure><img src={`http://localhost:3000/${destination.file_name}`} alt="Shoes" /></figure>
+            <div className="card card-compact h-[25rem] w-[20rem] bg-base-100 shadow-xl rounded-sm hover:-translate-y-2 transition hover:shadow-md border border-yellow-600 text-slate-300">
+                <figure><img src={`http://localhost:3000/${news?.file_name}`} className='' alt="image" /></figure>
                 <div className="card-body bg-slate-900">
-                    <h2 className="card-title">{destination?.name}</h2>
-                    <p>{truncateText(destination.details, 15)}</p>
+                    <h2 className="card-title">{news?.news_heading}</h2>
+                    <p>{truncateText(news?.news_description, 15)}</p>
                     <div className="card-actions justify-end items-center">
-                        <Link to={`/destination-details/${destination._id}`}>
+                        <Link to={`/traditional-news-details/${news?._id}`}>
                             <button className="btn btn-sm bg-yellow-600 text-slate-200 hover:bg-slate-200 hover:text-yellow-600 border-none">View</button>
                         </Link>
                     </div>
@@ -32,4 +32,4 @@ function DestinationCard({ destination }) {
     )
 }
 
-export default DestinationCard
+export default TraditionalNewsCard

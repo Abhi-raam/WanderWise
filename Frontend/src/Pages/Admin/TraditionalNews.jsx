@@ -73,7 +73,7 @@ function TraditionalNews() {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className='max-w-[10rem] text-justify border border-slate-600'>{item.news_description}</td>
+                                    <td className='max-w-[25rem] text-justify border border-slate-600'>{item.news_description}</td>
                                     <td className='border border-slate-600'>{new Date(item?.time).toDateString()}</td>
                                     <td className='border border-slate-600'>
                                         <div className="dropdown dropdown-end" onClick={() => toggleDropdown(item._id)}>

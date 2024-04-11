@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 function NewsCard({news}) {
 
     const truncateText = (text, numWords) => {
@@ -22,7 +22,9 @@ function NewsCard({news}) {
                     <h2 className="card-title">{news?.news_heading}</h2>
                     <p>{truncateText(news?.news_description, 15)}</p>
                     <div className="card-actions justify-end items-center">
+                        <Link to={`/news-details/${news?._id}`}>
                         <button className="btn btn-sm bg-yellow-600 text-slate-200 hover:bg-slate-200 hover:text-yellow-600 border-none">View</button>
+                        </Link>
                     </div>
                 </div>
             </div>
